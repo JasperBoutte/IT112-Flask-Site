@@ -7,48 +7,27 @@ def index():
     projects = [
         {
             'title': 'Bio Page',
-            'description': 'A responsive personal profile page showcasing my background, skills, and interests with LinkedIn integration.',
+            'description': 'A responsive personal profile page showcasing my background, skills, and interests.',
             'tech': ['Flask', 'HTML', 'CSS', 'Bootstrap 5'],
-            'assignment': 'IT112 - Assignment 1',
+            'assignment': 'Personal Project',
             'url': '/bio',
-            'featured': True,
-            'image': 'bio_project.jpg'
+            'featured': True
         },
         {
-            'title': 'Fortune Teller',
-            'description': 'Interactive fortune teller that generates random fortunes based on user input. Features custom animations and interactive color/number selection.',
-            'tech': ['Flask', 'HTML', 'CSS', 'JavaScript', 'Bootstrap 5'],
-            'assignment': 'IT112 - Assignment 2',
+            'title': 'AI Fortune Teller',
+            'description': 'Interactive fortune teller powered by Claude AI. Features custom animations and interactive color/number selection.',
+            'tech': ['Flask', 'HTML', 'CSS', 'JavaScript', 'Anthropic API'],
+            'assignment': 'Personal Project',
             'url': '/fortune',
-            'featured': True,
-            'image': 'fortune_project.jpg'
+            'featured': True
         },
         {
             'title': 'Project Showcase',
-            'description': 'A portfolio website designed to display all projects created for the IT112 class with categorization and filtering capabilities.',
+            'description': 'A portfolio website designed to display all projects with categorization and filtering capabilities.',
             'tech': ['Flask', 'HTML', 'CSS', 'Bootstrap 5'],
-            'assignment': 'IT112 - Assignment 3',
+            'assignment': 'Personal Project',
             'url': '/projects',
-            'featured': True,
-            'image': 'projects_showcase.jpg'
-        },
-        {
-            'title': 'Personal Blog System',
-            'description': 'A simple blogging platform built with Flask that allows for text formatting and image uploads.',
-            'tech': ['Flask', 'HTML', 'CSS', 'JavaScript', 'Bootstrap 5'],
-            'assignment': 'Personal Project',
-            'url': '#',
-            'featured': False,
-            'image': 'blog_project.jpg'
-        },
-        {
-            'title': 'Python Automation Scripts',
-            'description': 'Collection of Python scripts for automating repetitive tasks and file organization.',
-            'tech': ['Python', 'PyAutoGUI', 'OS Module'],
-            'assignment': 'Personal Project',
-            'url': '#',
-            'featured': False,
-            'image': 'python_scripts.jpg'
+            'featured': True
         }
     ]
     

@@ -14,20 +14,29 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback-dev-key')
 # Register blueprints
 from routes.bio import bio_bp
 from routes.fortune import fortune_bp
-from routes.projects import projects_bp
 
 app.register_blueprint(bio_bp)
 app.register_blueprint(fortune_bp)
-app.register_blueprint(projects_bp)
 
 @app.route('/')
 def index():
-    assignments = [
-        {"title": "Bio Page", "description": "Learn about me", "url": "/bio", "icon": "person-circle"},
-        {"title": "Fortune Teller", "description": "Get your fortune told", "url": "/fortune", "icon": "stars"},
-        {"title": "Projects", "description": "View my class projects", "url": "/projects", "icon": "kanban"}
+    sections = [
+        {
+            "title": "Bio Page", 
+            "description": "Learn about me and my skills", 
+            "url": "/bio", 
+            "icon": "person-circle",
+            "tech": ["Flask", "HTML/CSS", "Bootstrap 5"]
+        },
+        {
+            "title": "AI Fortune Teller", 
+            "description": "Get your fortune from Claude AI", 
+            "url": "/fortune", 
+            "icon": "stars",
+            "tech": ["Flask", "JavaScript", "Anthropic API", "CSS Animations"]
+        }
     ]
-    return render_template('index.html', assignments=assignments)
+    return render_template('index.html', assignments=sections)
 
 if __name__ == '__main__':
     app.run(debug=True) 

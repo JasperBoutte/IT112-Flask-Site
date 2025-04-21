@@ -1,13 +1,12 @@
-# IT112 Flask Assignment
+# Personal Flask Website
 
-A modular Flask application showcasing different assignments for IT112 class.
+A streamlined Flask application showcasing my personal projects and skills.
 
 ## Features
 
 - Bio page with personal information
-- Fortune teller with form inputs
-- Projects showcase page
-- Bootstrap 5 UI with responsive design
+- AI-powered Fortune Teller using Claude API
+- Simple, responsive Bootstrap 5 UI
 
 ## Setup
 
@@ -22,15 +21,19 @@ A modular Flask application showcasing different assignments for IT112 class.
    ```
    pip install -r requirements.txt
    ```
-4. Run the application:
+4. Add your Anthropic API key to a .env file:
+   ```
+   ANTHROPIC_API_KEY=your-api-key-here
+   ```
+5. Run the application:
    ```
    python app.py
    ```
-5. Visit http://127.0.0.1:5000/ in your browser
+6. Visit http://127.0.0.1:5000/ in your browser
 
 ## Structure
 
-- **routes/**: Blueprint files for different sections
+- **routes/**: Blueprint files for different sections (bio and fortune)
 - **templates/**: HTML templates using Jinja2
 - **static/**: CSS and other static files
 

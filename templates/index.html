@@ -1,31 +1,59 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - IT112 Flask App{% endblock %}
+{% block title %}Home - Jasper Boutte{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8 text-center">
-        <h1 class="mb-4">Welcome to IT112 Flask App</h1>
+        <h1 class="mb-4">IT112 Assignments</h1>
         <p class="lead mb-5">
-            This app showcases various assignments from IT112 class. 
-            Click on any card below to explore the different assignments.
+            Here are the Assignments all on one okish looking site!
         </p>
     </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for assignment in assignments %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for project in assignments %}
     <div class="col">
         <div class="card h-100 shadow-sm hover-card">
+            <div class="card-header bg-primary text-white">
+                {% if project.url == "/bio" %}
+                <h3 class="h5 mb-0">If you really think about it, this is kinda HW 2 - Create a Flask app</h3>
+                {% elif project.url == "/fortune" %}
+                <h3 class="h5 mb-0">HW 3 - Fortune Teller</h3>
+                {% else %}
+                <h3 class="h5 mb-0">{{ project.title }}</h3>
+                {% endif %}
+            </div>
             <div class="card-body text-center">
                 <div class="icon-wrapper mb-3">
-                    <i class="bi bi-{{ assignment.icon }} fs-1"></i>
+                    <i class="bi bi-{{ project.icon }} fs-1"></i>
                 </div>
-                <h5 class="card-title">{{ assignment.title }}</h5>
-                <p class="card-text">{{ assignment.description }}</p>
+                {% if project.url == "/bio" %}
+                <p class="card-text mb-3">It's a over the top about me that no one asked for. (not even me) but I made it and had some fun doing so.</p>
+                {% elif project.url == "/fortune" %}
+                <p class="card-text mb-3">Mysteries have entered your tab(if you setup the API that is, otherwise it's just some random boring preprogramed stuff)</p>
+                {% else %}
+                <p class="card-text mb-3">{{ project.description }}</p>
+                {% endif %}
+                
+                <div class="mb-3">
+                    <h6 class="mb-2">Technologies Used:</h6>
+                    <div>
+                        {% for tech in project.tech %}
+                        <span class="badge bg-primary me-1 mb-1">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             <div class="card-footer bg-transparent text-center border-top-0">
-                <a href="{{ assignment.url }}" class="btn btn-primary">View Assignment</a>
+                {% if project.url == "/bio" %}
+                <a href="{{ project.url }}" class="btn btn-primary">View</a>
+                {% elif project.url == "/fortune" %}
+                <a href="{{ project.url }}" class="btn btn-primary">Click Me</a>
+                {% else %}
+                <a href="{{ project.url }}" class="btn btn-primary">View Project</a>
+                {% endif %}
             </div>
         </div>
     </div>
