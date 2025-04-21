@@ -1,0 +1,162 @@
+/* General Styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Card Styles */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.icon-wrapper {
+    color: #0d6efd;
+}
+
+/* Bio Page */
+.avatar-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    color: #0d6efd;
+}
+
+/* Fortune Teller */
+.fortune-text {
+    font-style: italic;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Crystal Ball */
+.crystal-ball-container {
+    position: relative;
+    margin: 0 auto 2rem;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crystal-ball {
+    font-size: 70px;
+    z-index: 2;
+    animation: float 3s ease-in-out infinite;
+}
+
+.crystal-ball-glow {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(111, 71, 190, 0.5) 0%, rgba(148, 187, 233, 0) 70%);
+    animation: pulse 2s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.2); }
+}
+
+/* Color and Number Options */
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #000, 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.number-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.2s;
+    border: 2px solid #dee2e6;
+}
+
+.number-option:hover {
+    background-color: #e9ecef;
+    transform: scale(1.1);
+}
+
+.number-option.selected {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+    transform: scale(1.1);
+}
+
+.selection-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 0 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.selection-text {
+    font-weight: 600;
+} 

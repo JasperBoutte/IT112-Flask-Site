@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - IT112 Flask App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="mb-4">Welcome to IT112 Flask App</h1>
+        <p class="lead mb-5">
+            This app showcases various assignments from IT112 class. 
+            Click on any card below to explore the different assignments.
+        </p>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for assignment in assignments %}
+    <div class="col">
+        <div class="card h-100 shadow-sm hover-card">
+            <div class="card-body text-center">
+                <div class="icon-wrapper mb-3">
+                    <i class="bi bi-{{ assignment.icon }} fs-1"></i>
+                </div>
+                <h5 class="card-title">{{ assignment.title }}</h5>
+                <p class="card-text">{{ assignment.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent text-center border-top-0">
+                <a href="{{ assignment.url }}" class="btn btn-primary">View Assignment</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 

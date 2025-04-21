@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Fortune Teller - IT112 Flask App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow mb-5">
+            <div class="card-header bg-primary text-white text-center">
+                <h2 class="mb-0"><i class="bi bi-stars me-2"></i>Fortune Teller</h2>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="crystal-ball-container">
+                        <div class="crystal-ball">🔮</div>
+                        <div class="crystal-ball-glow"></div>
+                    </div>
+                    <h3 class="mb-2">Reveal Your Fortune</h3>
+                    <p class="text-muted">Choose wisely, your destiny awaits...</p>
+                </div>
+
+                {% if error %}
+                <div class="alert alert-warning" role="alert">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('fortune.index') }}">
+                    <div class="mb-4">
+                        <label for="name" class="form-label">Your Name (optional)</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="How shall I address you?">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Choose a Color</label>
+                        <input type="hidden" name="color" id="color_input" required>
+                        <div class="options-container">
+                            {% for color_name, color_hex in colors.items() %}
+                            <div class="color-option" 
+                                style="background-color: {{ color_hex }};" 
+                                data-color="{{ color_name }}"
+                                onclick="selectColor('{{ color_name }}')"></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Choose a Number (1-8)</label>
+                        <input type="hidden" name="number" id="number_input" required>
+                        <div class="options-container">
+                            {% for number in numbers %}
+                            <div class="number-option" 
+                                data-number="{{ number }}"
+                                onclick="selectNumber('{{ number }}')">{{ number }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-magic me-2"></i>Reveal My Fortune
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function selectColor(color) {
+        // Clear previous selections
+        document.querySelectorAll('.color-option').forEach(el => {
+            el.classList.remove('selected');
+        });
+        
+        // Select the new color
+        document.querySelector(`.color-option[data-color="${color}"]`).classList.add('selected');
+        
+        // Set the hidden input value
+        document.getElementById('color_input').value = color;
+    }
+    
+    function selectNumber(number) {
+        // Clear previous selections
+        document.querySelectorAll('.number-option').forEach(el => {
+            el.classList.remove('selected');
+        });
+        
+        // Select the new number
+        document.querySelector(`.number-option[data-number="${number}"]`).classList.add('selected');
+        
+        // Set the hidden input value
+        document.getElementById('number_input').value = number;
+    }
+    
+    // Form validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            const colorSelected = document.getElementById('color_input').value;
+            const numberSelected = document.getElementById('number_input').value;
+            
+            if (!colorSelected || !numberSelected) {
+                event.preventDefault();
+                alert('Please choose both a color and a number for your fortune.');
+            }
+        });
+    });
+</script>
+{% endblock %} 

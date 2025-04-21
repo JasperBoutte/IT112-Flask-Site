@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects - IT112 Flask App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mb-4">
+    <div class="col-md-8 text-center">
+        <h1 class="mb-3">My IT112 Projects</h1>
+        <p class="lead">
+            Here's a collection of projects I've completed for the IT112 class.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    {% for project in projects %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bg-light">
+                <h3 class="card-title mb-0">{{ project.title }}</h3>
+                <div class="text-muted small">{{ project.assignment }}</div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ project.description }}</p>
+                
+                <div class="mb-3">
+                    <h5>Technologies Used:</h5>
+                    <div>
+                        {% for tech in project.tech %}
+                        <span class="badge bg-primary me-1 mb-1">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="{{ project.url }}" class="btn btn-outline-primary">View Project</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 

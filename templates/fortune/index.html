@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Fortune Teller - IT112 Flask App{% endblock %}
+
+{% block content %}
+<meta http-equiv="refresh" content="0;url={{ url_for('fortune.index') }}">
+<div class="text-center">
+    <p>Redirecting to the fortune teller...</p>
+</div>
+{% endblock %} 
