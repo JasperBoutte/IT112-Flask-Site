@@ -2,41 +2,121 @@
 
 {% block title %}Projects - IT112 Flask App{% endblock %}
 
+{% block extra_css %}
+<style>
+    .project-image {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px 4px 0 0;
+    }
+    
+    .featured-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ffc107;
+        color: #212529;
+        font-size: 0.8rem;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+    
+    .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+    
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center mb-4">
-    <div class="col-md-8 text-center">
-        <h1 class="mb-3">My IT112 Projects</h1>
-        <p class="lead">
-            Here's a collection of projects I've completed for the IT112 class.
+    <div class="col-lg-10 text-center">
+        <h1 class="mb-3">My Projects</h1>
+        <p class="lead mb-5">
+            Here's a portfolio of projects I've worked on for IT112 and beyond.
+            <br>Take a look at what I've built and the skills I've developed.
         </p>
     </div>
 </div>
 
-<div class="row">
-    {% for project in projects %}
-    <div class="col-md-6 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-header bg-light">
-                <h3 class="card-title mb-0">{{ project.title }}</h3>
-                <div class="text-muted small">{{ project.assignment }}</div>
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{ project.description }}</p>
-                
-                <div class="mb-3">
-                    <h5>Technologies Used:</h5>
-                    <div>
-                        {% for tech in project.tech %}
-                        <span class="badge bg-primary me-1 mb-1">{{ tech }}</span>
-                        {% endfor %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="mb-4">
+            <h2 class="h4 mb-3"><i class="bi bi-star-fill text-warning me-2"></i>Featured Projects</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for project in projects %}
+                {% if project.featured %}
+                <div class="col">
+                    <div class="card shadow-sm project-card">
+                        <div class="project-image" style="background-image: url('{{ url_for('static', filename='images/' + project.image) }}');">
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="h5 card-title">{{ project.title }}</h3>
+                            <p class="text-muted small mb-2">{{ project.assignment }}</p>
+                            <p class="card-text small">{{ project.description }}</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="h6">Technologies Used:</h5>
+                                <div>
+                                    {% for tech in project.tech %}
+                                    <span class="badge bg-primary me-1 mb-1">{{ tech }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="{{ project.url }}" class="btn btn-outline-primary btn-sm">View Project</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer bg-transparent">
-                <a href="{{ project.url }}" class="btn btn-outline-primary">View Project</a>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
+        
+        <div class="mt-5">
+            <h2 class="h4 mb-3"><i class="bi bi-code-slash me-2"></i>Other Projects</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for project in projects %}
+                {% if not project.featured %}
+                <div class="col">
+                    <div class="card shadow-sm project-card">
+                        <div class="project-image" style="background-image: url('{{ url_for('static', filename='images/' + project.image) }}');"></div>
+                        <div class="card-body">
+                            <h3 class="h5 card-title">{{ project.title }}</h3>
+                            <p class="text-muted small mb-2">{{ project.assignment }}</p>
+                            <p class="card-text small">{{ project.description }}</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="h6">Technologies Used:</h5>
+                                <div>
+                                    {% for tech in project.tech %}
+                                    <span class="badge bg-secondary me-1 mb-1">{{ tech }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="{{ project.url }}" class="btn btn-outline-secondary btn-sm">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <p>Connect with me on <a href="https://www.linkedin.com/in/jasperboutte" target="_blank" class="link-primary">LinkedIn</a> to see more of my work.</p>
+        </div>
     </div>
-    {% endfor %}
 </div>
 {% endblock %} 

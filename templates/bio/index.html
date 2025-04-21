@@ -2,16 +2,65 @@
 
 {% block title %}About Me - {{ bio.name }}{% endblock %}
 
+{% block extra_css %}
+<style>
+    .linkedin-banner {
+        height: 200px;
+        background-image: url("{{ url_for('static', filename='images/linkedin_banner.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px 8px 0 0;
+        position: relative;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 1rem;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-item, .interest-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .skill-item:last-child, .interest-item:last-child {
+        border-bottom: none;
+    }
+    
+    .skill-icon, .interest-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background-color: #e9f5ff;
+        color: #0d6efd;
+        border-radius: 50%;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    
+    .skill-text, .interest-text {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="card shadow-sm mb-4">
+    <div class="col-lg-10">
+        <div class="card shadow-sm mb-5">
+            <div class="linkedin-banner"></div>
             <div class="card-body p-4">
                 <div class="row mb-4">
                     <div class="col-md-4 text-center mb-4 mb-md-0">
-                        <div class="avatar-placeholder mb-3 mx-auto">
-                            <i class="bi bi-person-circle display-1"></i>
-                        </div>
+                        <img src="{{ url_for('static', filename='images/Bio_me_pfp.jpg') }}" alt="{{ bio.name }}" class="profile-image">
                         <h2 class="h3 mb-1">{{ bio.name }}</h2>
                         <p class="text-muted">{{ bio.title }}</p>
                     </div>
@@ -25,38 +74,38 @@
                 </div>
                 
                 <div class="row mt-4">
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm mb-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="card-header bg-light border-0">
                                 <h3 class="h5 mb-0"><i class="bi bi-laptop me-2"></i>Skills</h3>
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    {% for skill in bio.skills %}
-                                    <li class="list-group-item border-0 px-0">
-                                        <i class="bi bi-check-circle-fill text-success me-2 small"></i>
-                                        {{ skill }}
-                                    </li>
-                                    {% endfor %}
-                                </ul>
+                                {% for skill in bio.skills %}
+                                <div class="skill-item d-flex align-items-start">
+                                    <div class="skill-icon">
+                                        <i class="bi bi-check-circle-fill small"></i>
+                                    </div>
+                                    <div class="skill-text">{{ skill }}</div>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm mb-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="card-header bg-light border-0">
                                 <h3 class="h5 mb-0"><i class="bi bi-lightbulb me-2"></i>Interests</h3>
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    {% for interest in bio.interests %}
-                                    <li class="list-group-item border-0 px-0">
-                                        <i class="bi bi-arrow-right text-primary me-2 small"></i>
-                                        {{ interest }}
-                                    </li>
-                                    {% endfor %}
-                                </ul>
+                                {% for interest in bio.interests %}
+                                <div class="interest-item d-flex align-items-start">
+                                    <div class="interest-icon">
+                                        <i class="bi bi-arrow-right small"></i>
+                                    </div>
+                                    <div class="interest-text">{{ interest }}</div>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
