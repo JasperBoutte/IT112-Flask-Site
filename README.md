@@ -1,42 +1,37 @@
 # Personal Flask Website
 
-A streamlined Flask application showcasing my personal projects and skills.
+This is a lightweight Flask site I built in my Python Web Programming class to serve as a hub for my assignments.
 
-## Features
+## What it includes
 
-- Bio page with personal information
-- AI-powered Fortune Teller using Claude API
-- Simple, responsive Bootstrap 5 UI
+- A bio page with info about me
+- A fortune teller with AI-generated responses (powered by Anthropic)
 
-## Setup
+## How to run it
 
-1. Clone this repository
-2. Create a virtual environment (optional):
-   ```
+1. Clone the repo
+2. (Optional) Set up a virtual environment:
+   ```bash
    python -m venv venv
-   venv\Scripts\activate  # Windows
+   venv\Scripts\activate  # Windows  
    source venv/bin/activate  # Mac/Linux
    ```
-3. Install dependencies:
-   ```
+3. Install the required packages:
+   ```bash
    pip install -r requirements.txt
    ```
-4. Add your Anthropic API key to a .env file:
-   ```
+4. Add your Anthropic API key to a `.env` file:
+   ```bash
    ANTHROPIC_API_KEY=your-api-key-here
    ```
-5. Run the application:
-   ```
+5. Start the app:
+   ```bash
    python app.py
    ```
-6. Visit http://127.0.0.1:5000/ in your browser
+6. Open your browser and go to [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## Structure
+## Folder overview
 
-- **routes/**: Blueprint files for different sections (bio and fortune)
-- **templates/**: HTML templates using Jinja2
-- **static/**: CSS and other static files
-
-## Note
-
-This is a simple Flask application designed for educational purposes. 
+- **routes/** – Flask blueprints for different pages (bio, fortune, etc.)
+- **templates/** – HTML files with Jinja2
+- **static/** – CSS and other frontend assets
